@@ -6,11 +6,11 @@
 
 #IncludeRegexTransform: 
 
-/home/yiluzhang/catkin_ws/src/learning_topic/src/velocity_publisher.cpp
+/home/yiluzhang/code/catkin_ws/src/learning_topic/src/velocity_publisher.cpp
 ros/ros.h
-/home/yiluzhang/catkin_ws/src/learning_topic/src/ros/ros.h
+/home/yiluzhang/code/catkin_ws/src/learning_topic/src/ros/ros.h
 geometry_msgs/Twist.h
-/home/yiluzhang/catkin_ws/src/learning_topic/src/geometry_msgs/Twist.h
+/home/yiluzhang/code/catkin_ws/src/learning_topic/src/geometry_msgs/Twist.h
 
 /opt/ros/kinetic/include/geometry_msgs/Twist.h
 string

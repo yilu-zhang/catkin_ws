@@ -16,7 +16,7 @@ int main(int argc, char **argv)
     ros::Publisher turtle_vel_pub = n.advertise<geometry_msgs::Twist>("/turtle1/cmd_vel", 10);
 
     // 设置循环的频率
-    ros::Rate loop_rate(10);
+    ros::Rate loop_rate(2);
 
     int count = 0;
     while (ros::ok())
@@ -28,7 +28,8 @@ int main(int argc, char **argv)
 
         // 发布消息
         turtle_vel_pub.publish(vel_msg);
-	ROS_INFO("topic_test");
+	    ROS_INFO("topic_test:");
+        ROS_INFO("%d",count);
 
 
         // 按照循环频率延时

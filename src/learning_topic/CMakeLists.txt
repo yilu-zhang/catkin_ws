@@ -8,6 +8,7 @@ project(learning_topic)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
+  message_generation
   geometry_msgs
   roscpp
   rospy
@@ -49,18 +50,14 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
 ## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+add_message_files(FILES
+  person.msg
+)
 
 ## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+add_service_files(FILES
+  AddTwoInts.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -70,10 +67,9 @@ find_package(catkin REQUIRED COMPONENTS
 # )
 
 ## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   geometry_msgs#   std_msgs
-# )
+generate_messages(DEPENDENCIES
+  std_msgs
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -105,6 +101,8 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
+  CATKIN_DEPENDS
+  message_runtime
 #  INCLUDE_DIRS include
 #  LIBRARIES learning_topic
 #  CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs turtlesim
@@ -118,9 +116,11 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
+  include ${catkin_INCLUDE_DIRS}
 # include
   ${catkin_INCLUDE_DIRS}
 )
+#MESSAGE(STATUS "the catkin_INCLUDE_DIRS is" ${catkin_INCLUDE_DIRS})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
@@ -154,6 +154,9 @@ include_directories(
 
 add_executable(velocity_publisher src/velocity_publisher.cpp)
 target_link_libraries(velocity_publisher ${catkin_LIBRARIES})
+
+add_executable(velocity_publisher_listener src/listener.cpp)
+target_link_libraries(velocity_publisher_listener ${catkin_LIBRARIES})
 
 #############
 ## Install ##
@@ -209,3 +212,19 @@ target_link_libraries(velocity_publisher ${catkin_LIBRARIES})
 
 ## Add folders to be run by python nosetests
 # catkin_add_nosetests(test)
+
+
+add_executable(clients
+  src/clients.cpp
+)
+add_dependencies(clients ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(clients
+  ${catkin_LIBRARIES}
+)
+add_executable(services
+  src/service.cpp
+)
+add_dependencies(services ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(services
+  ${catkin_LIBRARIES}
+)
