@@ -1,2 +1,2 @@
-learning_topic
--DCMAKE_BUILD_TYPE=Debug -DCATKIN_DEVEL_PREFIX=/home/yiluzhang/code/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/yiluzhang/code/catkin_ws/install -G Unix Makefiles
+iai_kinect2/iai_kinect2:iai_kinect2/kinect2_bridge:iai_kinect2/kinect2_calibration:iai_kinect2/kinect2_registration:iai_kinect2/kinect2_viewer:learning_tf:learning_topic:mrobot_description:ydlidar_ros
+-DCMAKE_BUILD_TYPE=Release -DCATKIN_DEVEL_PREFIX=/home/yiluzhang/code/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/yiluzhang/code/catkin_ws/install -G Unix Makefiles
